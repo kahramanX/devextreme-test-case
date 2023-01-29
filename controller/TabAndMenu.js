@@ -37,7 +37,7 @@ const topTabPanelElement = $("#tableTopTabs")
     selectedIndex: 0,
     selectionMode: "single",
     scrollingEnabled: true,
-    itemTemplate: $("#companyContent"),
+    itemTemplate: $("#panelTabContent"),
     animationEnabled: true,
     onItemClick(event) {
       //      console.log(event);
