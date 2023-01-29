@@ -1,26 +1,9 @@
-const $ = require("jquery");
-const Dialog = require("devextreme/ui/dialog");
-
-const setTemplateEngine = require("devextreme/core/set_template_engine");
-
-// not working!
-setTemplateEngine("underscore");
-
-require("./assets/styles/style.scss");
-
-// devextreme jquery integration
-require("devextreme/integration/jquery");
-require("devextreme/ui/tabs");
-require("devextreme/ui/tab_panel");
+DevExpress.setTemplateEngine("underscore");
 
 let topTabPanelSource = [
   {
-    panelTitle: "company 1",
-    panelContent: "content 1",
-  },
-  {
-    panelTitle: "company 2",
-    panelContent: "content 2",
+    panelTitle: "Sayfam",
+    panelContent: "Boş sayfa",
   },
 ];
 
@@ -65,14 +48,17 @@ const topTabPanelElement = $("#tableTopTabs")
 function addButtonHandler(event) {
   const tabPanelItems = topTabPanelElement.option("dataSource");
 
-  console.log(event, "event name");
-
-  tabPanelItems.push({
-    panelTitle: event.itemData.text,
-    panelContent: "content 2",
-  });
-
-  console.log(topTabPanelElement.option("dataSource"));
+  if ((event.itemData.text = "Çağrı Listele")) {
+    tabPanelItems.push({
+      panelTitle: event.itemData.text,
+      panelContent: "Çağrı listele tabı",
+    });
+  } else if ((event.itemData.text = "Çağrı Ekle")) {
+    tabPanelItems.push({
+      panelTitle: event.itemData.text,
+      panelContent: "Çağrı Ekle tabı",
+    });
+  }
 
   topTabPanelElement.option("dataSource", tabPanelItems);
   topTabPanelElement.option("selectedIndex", tabPanelItems.length - 1);
