@@ -49,9 +49,19 @@
     </script>
 
     <script type="text/html" id="panelTabContent">
+    <div class="list-of-call-content">
+        <h4 class="title">Çağrı Listesi</h4>
+      <div class="list-of-call-actions">
+        <button><i class="dx-icon-edit"></i> Düzenle</button>
+        <button><i class="dx-icon-trash"></i> Sil</button>
+        <button><i class="dx-icon-plus"></i> Create</button>
+      </div>
+      <div id="ListOfCallWithGridData"></div>
+    </div>
         <div class="tabpanel-item">
             <%= panelContent %>
         </div>
+    </div>
     </script>
 
     <script src="controller/TabAndMenu.js"></script>

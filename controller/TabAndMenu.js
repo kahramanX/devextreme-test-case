@@ -7,7 +7,8 @@ let topTabPanelSource = [
   },
   {
     panelTitle: "Çağrı Listele",
-    panelContent: "Çağrılar",
+    panelContent: `
+      `,
   },
 ];
 

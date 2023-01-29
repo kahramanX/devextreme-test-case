@@ -85,4 +85,17 @@ header .header-user-actions div {
 .call-table-section #rightTable {
   border: 1px solid black;
   width: 100%;
+}
+
+.list-of-call-content {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.list-of-call-content .title {
+  border-bottom: 1px solid black;
+}
+.list-of-call-content .list-of-call-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
 }/*# sourceMappingURL=style.css.map */
