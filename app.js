@@ -1,16 +1,45 @@
 const $ = require("jquery");
 const Dialog = require("devextreme/ui/dialog");
+
 require("./assets/styles/style.scss");
 
 // devextreme jquery integration
 require("devextreme/integration/jquery");
+require("devextreme/ui/tabs");
 
-require("devextreme/ui/button");
+$("#leftMenu").dxTabs({
+  items: [
+    {
+      text: "Çağrılar",
+      disabled: true,
+      icon: "bell",
+    },
+    {
+      text: "Çağrı Listele",
+    },
+    {
+      text: "Çağrı Ekle",
+    },
+  ],
+  width: 250,
+  scrollingEnabled: false,
+  orientation: "vertical",
+  onItemClick(event) {
+    console.log(event);
+  },
+});
 
-$(".myButton").dxButton({
-  text: "Say 'Hello world'",
-  onClick: function () {
-    console.log("Hello world!");
-    Dialog.alert("Hello world!", "", false);
+$("#rightMenu").dxTabs({
+  items: [
+    {
+      text: "Sayfam",
+    },
+    {
+      text: "Çağrı Ekle",
+    },
+  ],
+  scrollingEnabled: false,
+  onItemClick(event) {
+    console.log(event);
   },
 });

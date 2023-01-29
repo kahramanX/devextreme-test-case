@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: darkblue !important;
 }
 
 header {
@@ -40,5 +39,22 @@ header {
         justify-content: center;
       }
     }
+  }
+}
+
+.call-table-section {
+  display: flex;
+
+  #leftMenu {
+    border: 1px solid black;
+
+    .dx-tabs-wrapper {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+  #rightMenu {
+    border: 1px solid black;
   }
 }
