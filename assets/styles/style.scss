@@ -2,3 +2,60 @@ body {
   margin: 0;
   padding: 0;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  @media (max-width: 440px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-logo {
+    @media (max-width: 440px) {
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .header-user-actions {
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: 440px) {
+      justify-content: center;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+
+      @media (max-width: 440px) {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.call-table-section {
+  display: flex;
+
+  #leftMenu {
+    border: 1px solid black;
+
+    .dx-tabs-wrapper {
+      display: flex !important;
+      flex-direction: column;
+    }
+  }
+
+  #rightTable {
+    border: 1px solid black;
+    width: 100%;
+  }
+}
