@@ -5,6 +5,10 @@ let topTabPanelSource = [
     panelTitle: "Sayfam",
     panelContent: "Boş sayfa",
   },
+  {
+    panelTitle: "Çağrı Listele",
+    panelContent: "Çağrılar",
+  },
 ];
 
 $("#leftMenu").dxTabs({
