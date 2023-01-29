@@ -45,12 +45,42 @@ header .header-user-actions div {
 .call-table-section {
   display: flex;
 }
+@media (max-width: 800px) {
+  .call-table-section {
+    flex-direction: column;
+  }
+}
 .call-table-section #leftMenu {
   border: 1px solid black;
+  width: 250px;
+}
+@media (max-width: 800px) {
+  .call-table-section #leftMenu {
+    width: 100%;
+  }
+}
+@media (max-width: 440px) {
+  .call-table-section #leftMenu {
+    width: 100%;
+  }
 }
 .call-table-section #leftMenu .dx-tabs-wrapper {
   display: flex !important;
   flex-direction: column;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .call-table-section #leftMenu .dx-tabs-wrapper {
+    flex-direction: row;
+  }
+}
+@media (max-width: 440px) {
+  .call-table-section #leftMenu .dx-tabs-wrapper {
+    flex-direction: column;
+  }
+}
+.call-table-section #leftMenu .dx-tabs-wrapper .dx-item {
+  width: 100%;
 }
 .call-table-section #rightTable {
   border: 1px solid black;
