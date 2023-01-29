@@ -21,7 +21,6 @@ $("#leftMenu").dxTabs({
       text: "Çağrı Ekle",
     },
   ],
-  width: 250,
   scrollingEnabled: false,
   onItemClick: addButtonHandler,
 });
