@@ -98,4 +98,7 @@ header .header-user-actions div {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
+}
+.list-of-call-content .list-of-call-actions button {
+  margin-right: 12px;
 }/*# sourceMappingURL=style.css.map */
