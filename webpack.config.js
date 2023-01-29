@@ -1,5 +1,6 @@
 var path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+//let topTabPanelSource = require("./data");
 
 module.exports = {
   mode: "production",
@@ -24,6 +25,7 @@ module.exports = {
       title: "test",
       filename: "./index.html",
       inject: "body",
+      //      datas: topTabPanelSource,
     }),
   ],
   module: {
@@ -31,6 +33,10 @@ module.exports = {
       {
         test: /\.scss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.html$/,
+        loader: "underscore-template-loader",
       },
     ],
   },
