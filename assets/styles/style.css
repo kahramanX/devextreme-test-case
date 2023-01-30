@@ -45,14 +45,60 @@ header .header-user-actions div {
 .call-table-section {
   display: flex;
 }
+@media (max-width: 850px) {
+  .call-table-section {
+    flex-direction: column;
+  }
+}
 .call-table-section #leftMenu {
   border: 1px solid black;
+  width: 250px;
+}
+@media (max-width: 850px) {
+  .call-table-section #leftMenu {
+    width: 100%;
+  }
+}
+@media (max-width: 440px) {
+  .call-table-section #leftMenu {
+    width: 100%;
+  }
 }
 .call-table-section #leftMenu .dx-tabs-wrapper {
   display: flex !important;
   flex-direction: column;
+  width: 100%;
+}
+@media (max-width: 850px) {
+  .call-table-section #leftMenu .dx-tabs-wrapper {
+    flex-direction: row;
+  }
+}
+@media (max-width: 440px) {
+  .call-table-section #leftMenu .dx-tabs-wrapper {
+    flex-direction: column;
+  }
+}
+.call-table-section #leftMenu .dx-tabs-wrapper .dx-item {
+  width: 100%;
 }
 .call-table-section #rightTable {
   border: 1px solid black;
   width: 100%;
+}
+
+.list-of-call-content {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.list-of-call-content h4 {
+  border-bottom: 1px solid black;
+}
+.list-of-call-content .list-of-call-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.list-of-call-content .list-of-call-actions button {
+  margin-right: 12px;
 }/*# sourceMappingURL=style.css.map */
