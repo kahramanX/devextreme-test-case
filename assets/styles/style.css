@@ -91,7 +91,7 @@ header .header-user-actions div {
   padding-right: 8px;
   padding-left: 8px;
 }
-.list-of-call-content .title {
+.list-of-call-content h4 {
   border-bottom: 1px solid black;
 }
 .list-of-call-content .list-of-call-actions {
