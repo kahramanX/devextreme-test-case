@@ -10,73 +10,73 @@ let topTabPanelSource = [
 let listOfCallSource = [
   {
     ID: 1,
-    name: "Giacomo Gulizzoni",
-    company: "Makrovit",
-    date: "01/01/2023",
-    employee: "Selim Yılmaz",
+    Name: "Giacomo Gulizzoni",
+    Company: "Makrovit",
+    Date: "01/01/2023",
+    Employee: "Selim Yılmaz",
   },
   {
     ID: 2,
-    name: "Marco Botton",
-    company: "Salimpeks Müh.",
-    date: "01/02/2023",
-    employee: "Burakhan Şenkal",
+    Name: "Marco Botton",
+    Company: "Salimpeks Müh.",
+    Date: "01/02/2023",
+    Employee: "Burakhan Şenkal",
   },
   {
     ID: 3,
-    name: "Mariah Maclochian",
-    company: "Better Half",
-    date: "01/03/2023",
-    employee: "Salih Kaya",
+    Name: "Mariah Maclochian",
+    Company: "Better Half",
+    Date: "01/03/2023",
+    Employee: "Salih Kaya",
   },
   {
     ID: 4,
-    name: "Timur Yılmaz",
-    company: "Apple",
-    date: "01/04/2023",
-    employee: "Tuğrul Çekiç",
+    Name: "Timur Yılmaz",
+    Company: "Apple",
+    Date: "01/04/2023",
+    Employee: "Tuğrul Çekiç",
   },
   {
     ID: 5,
-    name: "Riccardo Visser",
-    company: "Coza",
-    date: "01/05/2023",
-    employee: "Yusuf Kuzu",
+    Name: "Riccardo Visser",
+    Company: "Coza",
+    Date: "01/05/2023",
+    Employee: "Yusuf Kuzu",
   },
   {
     ID: 6,
-    name: "Giacomo Gulizzoni",
-    company: "Makrovit",
-    date: "01/01/2023",
-    employee: "Selim Yılmaz",
+    Name: "Giacomo Gulizzoni",
+    Company: "Makrovit",
+    Date: "01/01/2023",
+    Employee: "Selim Yılmaz",
   },
   {
     ID: 7,
-    name: "Marco Botton",
-    company: "Salimpeks Müh.",
-    date: "01/02/2023",
-    employee: "Burakhan Şenkal",
+    Name: "Marco Botton",
+    Company: "Salimpeks Müh.",
+    Date: "01/02/2023",
+    Employee: "Burakhan Şenkal",
   },
   {
     ID: 8,
-    name: "Mariah Maclochian",
-    company: "Better Half",
-    date: "01/03/2023",
-    employee: "Salih Kaya",
+    Name: "Mariah Maclochian",
+    Company: "Better Half",
+    Date: "01/03/2023",
+    Employee: "Salih Kaya",
   },
   {
     ID: 9,
-    name: "Timur Yılmaz",
-    company: "Apple",
-    date: "01/04/2023",
-    employee: "Tuğrul Çekiç",
+    Name: "Timur Yılmaz",
+    Company: "Apple",
+    Date: "01/04/2023",
+    Employee: "Tuğrul Çekiç",
   },
   {
     ID: 10,
-    name: "Riccardo Visser",
-    company: "Coza",
-    date: "01/05/2023",
-    employee: "Yusuf Kuzu",
+    Name: "Riccardo Visser",
+    Company: "Coza",
+    Date: "01/05/2023",
+    Employee: "Yusuf Kuzu",
   },
 ];
 
@@ -161,49 +161,83 @@ function closeButtonHandler(itemData) {
     topTabPanelElement.option("selectedIndex", index - 1);
 }
 
-function templateOfGridData(params) {
-  console.log(params);
-  return $("<div>")
-    .addClass("list-of-call-content")
-    .append($("<h4>").text("Çağrı Listesi"))
-    .append(
-      $("<div>")
-        .addClass("list-of-call-actions")
-        .append(
-          $("<button>")
-            .addClass("edit")
-            .text("Edit")
-            .append($("<i>").addClass("dx-icon-edit"))
-        )
-        .append(
-          $("<button>")
-            .addClass("delete")
-            .text("Delete")
-            .append($("<i>").addClass("dx-icon-trash"))
-        )
-        .append(
-          $("<button>")
-            .addClass("create")
-            .text("Create")
-            .append($("<i>").addClass("dx-icon-plus"))
-            .click(() => {
-              console.log("yaratma");
-            })
-        )
-    )
-    .append(
-      $("<div>")
-        .attr("id", "ListOfCallWithGridData")
-        .dxDataGrid({
-          keyExpr: "ID",
-          dataSource: listOfCallSource,
-          paging: {
-            pageSize: 5,
-          },
-          pager: {
-            showPageSizeSelector: true,
-            allowedPageSizes: [4, 6, 9],
-          },
-        })
-    );
+function templateOfGridData(param) {
+  console.log(param);
+  if (param.panelTitle == "Çağrı Listele" || param.panelTitle == "Sayfam") {
+    return $("<div>")
+      .addClass("list-of-call-content")
+      .append($("<h4>").text("Çağrı Listesi"))
+      .append(
+        $("<div>")
+          .addClass("list-of-call-actions")
+          .append(
+            $("<button>")
+              .addClass("edit")
+              .text("Edit")
+              .append($("<i>").addClass("dx-icon-edit"))
+          )
+          .append(
+            $("<button>")
+              .addClass("delete")
+              .text("Delete")
+              .append($("<i>").addClass("dx-icon-trash"))
+          )
+          .append(
+            $("<button>")
+              .addClass("create")
+              .text("Create")
+              .append($("<i>").addClass("dx-icon-plus"))
+          )
+      )
+      .append(
+        $("<div>")
+          .attr("id", "ListOfCallWithGridData")
+          .dxDataGrid({
+            keyExpr: "ID",
+            dataSource: listOfCallSource,
+            showBorders: true,
+            selection: {
+              mode: "multiple",
+              showCheckBoxesMode: "always",
+            },
+            filterRow: {
+              visible: true,
+            },
+            focusedRowEnabled: true,
+            columns: [
+              {
+                dataField: "ID",
+                dataType: "number",
+              },
+              {
+                dataField: "Name",
+                dataType: "string",
+              },
+              {
+                dataField: "Company",
+                dataType: "string",
+              },
+              {
+                dataField: "Date",
+                dataType: "date",
+              },
+              {
+                dataField: "Employee",
+                dataType: "string",
+              },
+            ],
+            paging: {
+              pageSize: 5,
+            },
+            pager: {
+              showPageSizeSelector: true,
+              allowedPageSizes: [4, 6, 9],
+            },
+          })
+      );
+  } else if (param.panelTitle == "Çağrı Ekle") {
+    return "çağrı ekle";
+  } else if (param.panelTitle == "Sayfam") {
+    return "Sayfam";
+  }
 }
