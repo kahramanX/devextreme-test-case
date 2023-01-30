@@ -99,20 +99,18 @@ let arrayOfRadioGroupGlobal = [
     items: ["Gelen", "Giden"],
   },
   {
-    text: "Tarih - Saat *",
-    id: "dateAndTimeInputGroup",
+    text: "Arayan/Aranan *",
+    id: "seekingAndSoughtRadioGroup",
     items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
   },
 ];
 
 let dateAndTimeItemsGlobal = [
   {
-    dataField: "Tarih",
     editorType: "dxDateBox",
     editorOptions: {},
   },
   {
-    dataField: "Saat",
     editorType: "dxTextBox",
     editorOptions: {
       mask: "00:00",
@@ -414,13 +412,24 @@ function addCallContent() {
     )
     .append(
       $("<div>")
-        .addClass("dx-field-value")
+        .addClass("dx-fieldset")
         .append(
-          $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
-            items: dateAndTimeItemsGlobal,
-            colCount: 3,
-            layout: "horizontal",
-          })
+          $("<div>")
+            .addClass("dx-field")
+            .append(
+              $("<div>").addClass("dx-field-label").text("Tarih - Saat *")
+            )
+            .append(
+              $("<div>")
+                .addClass("dx-field-value")
+                .append(
+                  $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
+                    items: dateAndTimeItemsGlobal,
+                    colCount: 3,
+                    layout: "horizontal",
+                  })
+                )
+            )
         )
     )
 
@@ -464,22 +473,20 @@ function editCallContent() {
       items: ["Gelen", "Giden"],
     },
     {
-      text: "Tarih - Saat *",
-      id: "dateAndTimeInputGroup",
+      text: "Arayan/Aranan *",
+      id: "seekingAndSoughtRadioGroup",
       items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
     },
   ];
 
   let dateAndTimeItems = [
     {
-      dataField: "Tarih",
       editorType: "dxDateBox",
       editorOptions: {
         value: new Date(2023, 2, 16),
       },
     },
     {
-      dataField: "Saat",
       editorType: "dxTextBox",
       editorOptions: {
         value: "10:18",
@@ -606,13 +613,24 @@ function editCallContent() {
     )
     .append(
       $("<div>")
-        .addClass("dx-field-value")
+        .addClass("dx-fieldset")
         .append(
-          $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
-            items: dateAndTimeItems,
-            colCount: 3,
-            layout: "horizontal",
-          })
+          $("<div>")
+            .addClass("dx-field")
+            .append(
+              $("<div>").addClass("dx-field-label").text("Tarih - Saat *")
+            )
+            .append(
+              $("<div>")
+                .addClass("dx-field-value")
+                .append(
+                  $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
+                    items: dateAndTimeItems,
+                    colCount: 3,
+                    layout: "horizontal",
+                  })
+                )
+            )
         )
     )
 
