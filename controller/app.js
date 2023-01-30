@@ -1,9 +1,14 @@
 DevExpress.setTemplateEngine("underscore");
 
+// Tablar için data
 let topTabPanelSource = [
   {
     panelTitle: "Sayfam",
-    panelContent: "Boş sayfa",
+    panelContent: "",
+  },
+  {
+    panelTitle: "Çağrı Listele",
+    panelContent: "",
   },
   {
     panelTitle: "Çağrı Düzenle",
@@ -11,6 +16,7 @@ let topTabPanelSource = [
   },
 ];
 
+// GridData için data
 let listOfCallSource = [
   {
     ID: 1,
@@ -84,6 +90,7 @@ let listOfCallSource = [
   },
 ];
 
+// Sol menü komponenti ekleniyor
 $("#leftMenu").dxTabs({
   items: [
     {
@@ -102,6 +109,7 @@ $("#leftMenu").dxTabs({
   onItemClick: addButtonHandler,
 });
 
+// Tab lar için komponent ekleniyor
 const topTabPanelElement = $("#tableTopTabs")
   .dxTabPanel({
     dataSource: topTabPanelSource,
@@ -121,18 +129,20 @@ const topTabPanelElement = $("#tableTopTabs")
   })
   .dxTabPanel("instance");
 
+// Menüye tıklandığında yeni bir tab oluşturan function
 function addButtonHandler(event) {
   const tabPanelItems = topTabPanelElement.option("dataSource");
 
+  // Menünün indexine göre tab oluşturulur. örn: çağrı ekleye tıklandıysa çağrı ekleme tabı oluşturulur
   if (event.itemIndex == 1) {
     tabPanelItems.push({
       panelTitle: event.itemData.text,
-      panelContent: $(".tab-panel-layer").append().html(),
+      panelContent: "",
     });
   } else if (event.itemIndex == 2) {
     tabPanelItems.push({
       panelTitle: event.itemData.text,
-      panelContent: "Çağrı Ekle tab",
+      panelContent: "",
     });
   }
 
@@ -140,15 +150,19 @@ function addButtonHandler(event) {
   topTabPanelElement.option("selectedIndex", tabPanelItems.length - 1);
 }
 
+// Tabların adını düzenleyen ve kapatmak için icon ekleyen function
 function titleTemplate(itemData, itemIndex, itemElement) {
   itemElement.append($("<span>").text(`${itemData.panelTitle}`));
 
+  // Tab kapatmak için icon ekleniyor
+  // ilk tab kapanmaması için ilk index dışındakilere kapatma iconu ekleniyor
   if (!itemIndex == 0) {
     itemElement.append(
       $("<i>")
         .addClass("dx-icon")
         .addClass("dx-icon-close")
         .click(() => {
+          // Tab'ı kapatmayı sağlayan function. Gönderilen itemData sayesinde tıklanan tab bulunup siliniyor
           closeButtonHandler(itemData);
         })
     );
@@ -156,6 +170,7 @@ function titleTemplate(itemData, itemIndex, itemElement) {
 }
 
 function closeButtonHandler(itemData) {
+  //Gönderilen itemData sayesinde tıklanan tab bulunup siliniyor
   const index = topTabPanelElement.option("dataSource").indexOf(itemData);
   const tabPanelItems = topTabPanelElement.option("dataSource");
   tabPanelItems.splice(index, 1);
@@ -165,16 +180,21 @@ function closeButtonHandler(itemData) {
     topTabPanelElement.option("selectedIndex", index - 1);
 }
 
+// Tab içeriğine hangi template geleceğini if sorgusu sayesinde seçilmesini sağlayan function
 function templatesOfTabContents(param) {
-  if (param.panelTitle == "Çağrı Listele" || param.panelTitle == "Sayfam") {
+  // Tüm contentler functionlara ayrıldı
+  if (param.panelTitle == "Çağrı Listele") {
     return gridDataContent();
   } else if (param.panelTitle == "Çağrı Ekle") {
     return addCallContent();
   } else if (param.panelTitle == "Çağrı Düzenle") {
     return editCallContent();
+  } else if (param.panelTitle == "Sayfam") {
+    return myPageContent();
   }
 }
 
+// Tab içeriği komponentleri START
 function gridDataContent() {
   return $("<div>")
     .addClass("list-of-call-content")
@@ -256,3 +276,8 @@ function addCallContent() {
 function editCallContent() {
   return " düzenleee";
 }
+
+function myPageContent() {
+  return "<h1>Sayfam</h1><br/><h4>Bu Sayfa Boş, üstteki tab ve sol menüye tıklamayı deneyin</h4><br/>";
+}
+// Tab içeriği komponentleri END
