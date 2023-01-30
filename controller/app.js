@@ -446,7 +446,7 @@ function addCallContent() {
               $("<div>")
                 .attr("id", "form-container")
                 .append(
-                  $("<div>").attr("id", "groupForm").dxForm({
+                  $("<div>").attr("id", "textForm").dxForm({
                     colCount: 1,
                     items: textFormItemsGlobal,
                   })
@@ -638,7 +638,7 @@ function editCallContent() {
               $("<div>")
                 .attr("id", "form-container")
                 .append(
-                  $("<div>").attr("id", "groupForm").dxForm({
+                  $("<div>").attr("id", "textForm").dxForm({
                     colCount: 1,
                     items: textFormItems,
                   })
