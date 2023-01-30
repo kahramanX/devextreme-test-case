@@ -90,6 +90,8 @@ let listOfCallSource = [
   },
 ];
 
+// Sonu Global ile biten değişkenler editCallContent function dışında kullanmak için eklendi.
+//editCallContent içindeki değişkenler yalnızca editCallContent içindir
 let arrayOfRadioGroupGlobal = [
   {
     text: "Çağrı Yönü *",
@@ -647,43 +649,6 @@ function editCallContent() {
 }
 
 function myPageContent() {
-  return "<h1>Sayfam</h1><br/><h4>Bu Sayfa Boş, üstteki tab ve sol menüye tıklamayı deneyin</h4><br/>";
+  return "<center><h1>Sayfam</h1><br/><h4>Bu Sayfa Boş, üstteki tablara veya sol menüye tıklamayı deneyin</h4><br/></center>";
 }
 // Tab içeriği komponentleri END
-
-// Forms Komponent START
-$("#callDirectionRadioGroup").dxRadioGroup({
-  items: ["Gelen", "Giden"],
-  layout: "horizontal",
-  value: "Gelen",
-});
-
-$("#seekerAndSoughtRadioGroup").dxRadioGroup({
-  items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
-  layout: "horizontal",
-  value: "Kayıtlı Bağlantı",
-});
-
-$("#dateAndTimeInputGroup").dxForm({
-  items: [
-    {
-      dataField: "Tarih",
-      editorType: "dxDateBox",
-      editorOptions: {
-        value: new Date(2023, 2, 16),
-      },
-    },
-    {
-      dataField: "Saat",
-      editorType: "dxTextBox",
-      editorOptions: {
-        value: "10:18",
-        mask: "00:00",
-      },
-    },
-  ],
-  colCount: 3,
-  layout: "horizontal",
-});
-
-// Forms Komponent END
