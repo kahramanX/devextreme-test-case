@@ -90,6 +90,122 @@ let listOfCallSource = [
   },
 ];
 
+let arrayOfRadioGroupGlobal = [
+  {
+    text: "Çağrı Yönü *",
+    id: "callDirectionRadioGroup",
+    items: ["Gelen", "Giden"],
+  },
+  {
+    text: "Tarih - Saat *",
+    id: "dateAndTimeInputGroup",
+    items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
+  },
+];
+
+let dateAndTimeItemsGlobal = [
+  {
+    dataField: "Tarih",
+    editorType: "dxDateBox",
+    editorOptions: {},
+  },
+  {
+    dataField: "Saat",
+    editorType: "dxTextBox",
+    editorOptions: {
+      mask: "00:00",
+    },
+  },
+];
+
+let groupFormItemsGlobal = [
+  {
+    itemType: "group",
+    caption: "Kayıtlı Bağlantı",
+    items: [
+      {
+        dataField: "Firma",
+        editorType: "dxSelectBox",
+        editorOptions: {
+          items: ["Makrovit Yem"],
+        },
+      },
+      {
+        dataField: "Bağlantı",
+        editorType: "dxSelectBox",
+        editorOptions: {
+          items: ["Giacomo Gulizzoni", "Tuğrul Yılmaz"],
+        },
+      },
+      { dataField: "Telefon", editorType: "dxSelectBox" },
+    ],
+  },
+  {
+    itemType: "group",
+    caption: "Bağlantı Değil",
+    items: [
+      {
+        itemType: "group",
+        items: [
+          {
+            dataField: "Ad",
+            editorType: "dxTextBox",
+          },
+          { dataField: "Soyad", editorType: "dxTextBox" },
+          {
+            itemType: "group",
+            items: [
+              {
+                dataField: "Telefon",
+                editorType: "dxSelectBox",
+                editorOptions: {
+                  items: ["+90", "+35"],
+                },
+              },
+              {
+                dataField: "",
+                editorType: "dxTextBox",
+                editorOptions: {
+                  mask: "(X00) 000-0000",
+                  maskRules: { X: /[01-9]/ },
+                },
+              },
+            ],
+            colCount: 3,
+            layout: "horizontal",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+let textFormItemsGlobal = [
+  {
+    dataField: "Çalışan",
+    editorType: "dxSelectBox",
+    editorOptions: {
+      items: ["Salih Solmaz", "Tuğrul Yılmaz"],
+    },
+  },
+  {
+    dataField: "Konu",
+    editorType: "dxTextBox",
+  },
+  {
+    dataField: "Açıklama",
+    editorType: "dxTextArea",
+  },
+  {
+    itemType: "button",
+    horizontalAlignment: "center",
+    buttonOptions: {
+      text: "Kaydet",
+      useSubmitBehavior: true,
+    },
+  },
+];
+
 // Sol menü komponenti ekleniyor
 $("#leftMenu").dxTabs({
   items: [
@@ -270,14 +386,304 @@ function gridDataContent() {
 }
 
 function addCallContent() {
-  return "Çağrı Ekle";
+  return $("<div>")
+    .addClass("form")
+    .append(
+      arrayOfRadioGroupGlobal.map((data, index) => {
+        return $("<div>")
+          .addClass("dx-fieldset")
+          .append(
+            $("<div>")
+              .addClass("dx-field")
+              .append($("<div>").addClass("dx-field-label").text(data.text))
+              .append(
+                $("<div>")
+                  .addClass("dx-field-value")
+                  .append(
+                    $("<div>").attr("id", data.id).dxRadioGroup({
+                      items: data.items,
+                      layout: "horizontal",
+                      value: data.items[0],
+                    })
+                  )
+              )
+          );
+      })
+    )
+    .append(
+      $("<div>")
+        .addClass("dx-field-value")
+        .append(
+          $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
+            items: dateAndTimeItemsGlobal,
+            colCount: 3,
+            layout: "horizontal",
+          })
+        )
+    )
+
+    .append(
+      $("<div>")
+        .addClass("dx-fieldset")
+        .append(
+          $("<div>")
+            .attr("id", "form-container")
+            .append(
+              $("<div>").attr("id", "groupForm").dxForm({
+                formData: [],
+                colCount: 2,
+                items: groupFormItemsGlobal,
+              })
+            )
+        )
+
+        .append(
+          $("<div>")
+            .addClass("dx-fieldset")
+            .append(
+              $("<div>")
+                .attr("id", "form-container")
+                .append(
+                  $("<div>").attr("id", "groupForm").dxForm({
+                    colCount: 1,
+                    items: textFormItemsGlobal,
+                  })
+                )
+            )
+        )
+    );
 }
 
 function editCallContent() {
-  return " düzenleee";
+  let arrayOfRadioGroup = [
+    {
+      text: "Çağrı Yönü *",
+      id: "callDirectionRadioGroup",
+      items: ["Gelen", "Giden"],
+    },
+    {
+      text: "Tarih - Saat *",
+      id: "dateAndTimeInputGroup",
+      items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
+    },
+  ];
+
+  let dateAndTimeItems = [
+    {
+      dataField: "Tarih",
+      editorType: "dxDateBox",
+      editorOptions: {
+        value: new Date(2023, 2, 16),
+      },
+    },
+    {
+      dataField: "Saat",
+      editorType: "dxTextBox",
+      editorOptions: {
+        value: "10:18",
+        mask: "00:00",
+      },
+    },
+  ];
+
+  let groupFormItems = [
+    {
+      itemType: "group",
+      caption: "Kayıtlı Bağlantı",
+      items: [
+        {
+          dataField: "Firma",
+          editorType: "dxSelectBox",
+          editorOptions: {
+            items: ["Makrovit Yem"],
+            value: "Makrovit Yem",
+          },
+        },
+        {
+          dataField: "Bağlantı",
+          editorType: "dxSelectBox",
+          editorOptions: {
+            items: ["Giacomo Gulizzoni", "Tuğrul Yılmaz"],
+            value: "Giacomo Gulizzoni",
+          },
+        },
+        { dataField: "Telefon", editorType: "dxSelectBox" },
+      ],
+    },
+    {
+      itemType: "group",
+      caption: "Bağlantı Değil",
+      items: [
+        {
+          itemType: "group",
+          items: [
+            {
+              dataField: "Ad",
+              editorType: "dxTextBox",
+            },
+            { dataField: "Soyad", editorType: "dxTextBox" },
+            {
+              itemType: "group",
+              items: [
+                {
+                  dataField: "Telefon",
+                  editorType: "dxSelectBox",
+                  editorOptions: {
+                    items: ["+90", "+35"],
+                    value: "+90",
+                  },
+                },
+                {
+                  dataField: "",
+                  editorType: "dxTextBox",
+                  editorOptions: {
+                    mask: "(X00) 000-0000",
+                    maskRules: { X: /[01-9]/ },
+                  },
+                },
+              ],
+              colCount: 3,
+              layout: "horizontal",
+            },
+          ],
+        },
+      ],
+    },
+  ];
+
+  let textFormItems = [
+    {
+      dataField: "Çalışan",
+      editorType: "dxSelectBox",
+      editorOptions: {
+        items: ["Salih Solmaz", "Tuğrul Yılmaz"],
+        value: "Salih Solmaz",
+      },
+    },
+    {
+      dataField: "Konu",
+      editorType: "dxTextBox",
+    },
+    {
+      dataField: "Açıklama",
+      editorType: "dxTextArea",
+    },
+    {
+      itemType: "button",
+      horizontalAlignment: "center",
+      buttonOptions: {
+        text: "Kaydet",
+        useSubmitBehavior: true,
+      },
+    },
+  ];
+
+  return $("<div>")
+    .addClass("form")
+    .append(
+      arrayOfRadioGroup.map((data, index) => {
+        return $("<div>")
+          .addClass("dx-fieldset")
+          .append(
+            $("<div>")
+              .addClass("dx-field")
+              .append($("<div>").addClass("dx-field-label").text(data.text))
+              .append(
+                $("<div>")
+                  .addClass("dx-field-value")
+                  .append(
+                    $("<div>").attr("id", data.id).dxRadioGroup({
+                      items: data.items,
+                      layout: "horizontal",
+                      value: data.items[0],
+                    })
+                  )
+              )
+          );
+      })
+    )
+    .append(
+      $("<div>")
+        .addClass("dx-field-value")
+        .append(
+          $("<div>").attr("id", "dateAndTimeInputGroup").dxForm({
+            items: dateAndTimeItems,
+            colCount: 3,
+            layout: "horizontal",
+          })
+        )
+    )
+
+    .append(
+      $("<div>")
+        .addClass("dx-fieldset")
+        .append(
+          $("<div>")
+            .attr("id", "form-container")
+            .append(
+              $("<div>").attr("id", "groupForm").dxForm({
+                formData: [],
+                colCount: 2,
+                items: groupFormItems,
+              })
+            )
+        )
+
+        .append(
+          $("<div>")
+            .addClass("dx-fieldset")
+            .append(
+              $("<div>")
+                .attr("id", "form-container")
+                .append(
+                  $("<div>").attr("id", "groupForm").dxForm({
+                    colCount: 1,
+                    items: textFormItems,
+                  })
+                )
+            )
+        )
+    );
 }
 
 function myPageContent() {
   return "<h1>Sayfam</h1><br/><h4>Bu Sayfa Boş, üstteki tab ve sol menüye tıklamayı deneyin</h4><br/>";
 }
 // Tab içeriği komponentleri END
+
+// Forms Komponent START
+$("#callDirectionRadioGroup").dxRadioGroup({
+  items: ["Gelen", "Giden"],
+  layout: "horizontal",
+  value: "Gelen",
+});
+
+$("#seekerAndSoughtRadioGroup").dxRadioGroup({
+  items: ["Kayıtlı Bağlantı", "Bağlantı Değil"],
+  layout: "horizontal",
+  value: "Kayıtlı Bağlantı",
+});
+
+$("#dateAndTimeInputGroup").dxForm({
+  items: [
+    {
+      dataField: "Tarih",
+      editorType: "dxDateBox",
+      editorOptions: {
+        value: new Date(2023, 2, 16),
+      },
+    },
+    {
+      dataField: "Saat",
+      editorType: "dxTextBox",
+      editorOptions: {
+        value: "10:18",
+        mask: "00:00",
+      },
+    },
+  ],
+  colCount: 3,
+  layout: "horizontal",
+});
+
+// Forms Komponent END
