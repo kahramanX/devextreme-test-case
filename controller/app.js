@@ -106,7 +106,7 @@ const topTabPanelElement = $("#tableTopTabs")
     selectedIndex: 0,
     selectionMode: "single",
     scrollingEnabled: true,
-    itemTemplate: templateOfGridData,
+    itemTemplate: templatesOfTabContents,
     animationEnabled: true,
     onItemClick(event) {
       //      console.log(event);
@@ -161,83 +161,89 @@ function closeButtonHandler(itemData) {
     topTabPanelElement.option("selectedIndex", index - 1);
 }
 
-function templateOfGridData(param) {
+function templatesOfTabContents(param) {
   console.log(param);
   if (param.panelTitle == "Çağrı Listele" || param.panelTitle == "Sayfam") {
-    return $("<div>")
-      .addClass("list-of-call-content")
-      .append($("<h4>").text("Çağrı Listesi"))
-      .append(
-        $("<div>")
-          .addClass("list-of-call-actions")
-          .append(
-            $("<button>")
-              .addClass("edit")
-              .text("Edit")
-              .append($("<i>").addClass("dx-icon-edit"))
-          )
-          .append(
-            $("<button>")
-              .addClass("delete")
-              .text("Delete")
-              .append($("<i>").addClass("dx-icon-trash"))
-          )
-          .append(
-            $("<button>")
-              .addClass("create")
-              .text("Create")
-              .append($("<i>").addClass("dx-icon-plus"))
-          )
-      )
-      .append(
-        $("<div>")
-          .attr("id", "ListOfCallWithGridData")
-          .dxDataGrid({
-            keyExpr: "ID",
-            dataSource: listOfCallSource,
-            showBorders: true,
-            selection: {
-              mode: "multiple",
-              showCheckBoxesMode: "always",
-            },
-            filterRow: {
-              visible: true,
-            },
-            focusedRowEnabled: true,
-            columns: [
-              {
-                dataField: "ID",
-                dataType: "number",
-              },
-              {
-                dataField: "Name",
-                dataType: "string",
-              },
-              {
-                dataField: "Company",
-                dataType: "string",
-              },
-              {
-                dataField: "Date",
-                dataType: "date",
-              },
-              {
-                dataField: "Employee",
-                dataType: "string",
-              },
-            ],
-            paging: {
-              pageSize: 5,
-            },
-            pager: {
-              showPageSizeSelector: true,
-              allowedPageSizes: [4, 6, 9],
-            },
-          })
-      );
+    return gridDataContent();
   } else if (param.panelTitle == "Çağrı Ekle") {
-    return "çağrı ekle";
-  } else if (param.panelTitle == "Sayfam") {
-    return "Sayfam";
+    return addCallContent();
   }
+}
+
+function gridDataContent() {
+  return $("<div>")
+    .addClass("list-of-call-content")
+    .append($("<h4>").text("Çağrı Listesi"))
+    .append(
+      $("<div>")
+        .addClass("list-of-call-actions")
+        .append(
+          $("<button>")
+            .addClass("edit")
+            .text("Edit")
+            .append($("<i>").addClass("dx-icon-edit"))
+        )
+        .append(
+          $("<button>")
+            .addClass("delete")
+            .text("Delete")
+            .append($("<i>").addClass("dx-icon-trash"))
+        )
+        .append(
+          $("<button>")
+            .addClass("create")
+            .text("Create")
+            .append($("<i>").addClass("dx-icon-plus"))
+        )
+    )
+    .append(
+      $("<div>")
+        .attr("id", "ListOfCallWithGridData")
+        .dxDataGrid({
+          keyExpr: "ID",
+          dataSource: listOfCallSource,
+          showBorders: true,
+          selection: {
+            mode: "multiple",
+            showCheckBoxesMode: "always",
+          },
+          filterRow: {
+            visible: true,
+          },
+          focusedRowEnabled: true,
+          columns: [
+            {
+              dataField: "ID",
+              dataType: "number",
+            },
+            {
+              dataField: "Name",
+              dataType: "string",
+            },
+            {
+              dataField: "Company",
+              dataType: "string",
+            },
+            {
+              dataField: "Date",
+              dataType: "date",
+            },
+            {
+              dataField: "Employee",
+              dataType: "string",
+            },
+          ],
+          paging: {
+            pageSize: 5,
+          },
+          pager: {
+            showPageSizeSelector: true,
+            allowedPageSizes: [4, 6, 9],
+          },
+        })
+    );
+}
+
+function addCallContent() {
+  return "Çağrı Ekle";
 }
