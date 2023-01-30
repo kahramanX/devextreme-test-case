@@ -5,6 +5,10 @@ let topTabPanelSource = [
     panelTitle: "Sayfam",
     panelContent: "Boş sayfa",
   },
+  {
+    panelTitle: "Çağrı Düzenle",
+    panelContent: "",
+  },
 ];
 
 let listOfCallSource = [
@@ -162,11 +166,12 @@ function closeButtonHandler(itemData) {
 }
 
 function templatesOfTabContents(param) {
-  console.log(param);
   if (param.panelTitle == "Çağrı Listele" || param.panelTitle == "Sayfam") {
     return gridDataContent();
   } else if (param.panelTitle == "Çağrı Ekle") {
     return addCallContent();
+  } else if (param.panelTitle == "Çağrı Düzenle") {
+    return editCallContent();
   }
 }
 
@@ -246,4 +251,8 @@ function gridDataContent() {
 
 function addCallContent() {
   return "Çağrı Ekle";
+}
+
+function editCallContent() {
+  return " düzenleee";
 }
